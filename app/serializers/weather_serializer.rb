@@ -5,9 +5,9 @@ class WeatherSerializer
         "id": nil,
         "type": "forecast",
         "attributes": {
-        "current_weather": format_current_weather(forecast[:current]),
-        "daily_weather": format_daily_weather(forecast[:forecast][:forecastday]),
-        "hourly_weather": format_hourly_weather(forecast[:forecast][:forecastday].first[:hour])
+          "current_weather": format_current_weather(forecast[:current]),
+          "daily_weather": format_daily_weather(forecast[:forecast][:forecastday]),
+          "hourly_weather": format_hourly_weather(forecast[:forecast][:forecastday].first[:hour])
         }
       } 
     }

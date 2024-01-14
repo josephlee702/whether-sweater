@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Location, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "creates a location with city and state attributes" do
+    location = Location.create(city: "Denver", state: "CO")
+    expect(location).to have_attributes(city: 'Denver')
+    expect(location).to have_attributes(state: 'CO')
+  end
 end
