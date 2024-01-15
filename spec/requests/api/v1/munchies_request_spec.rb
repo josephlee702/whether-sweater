@@ -34,4 +34,18 @@ describe "Munchies API" do
     expect(location[:attributes][:restaurant]).to have_key(:reviews)
     expect(location[:attributes][:restaurant][:reviews]).to be_a(Integer)
   end
+
+  it "does not return unnecessary data" do
+    get "/api/v1/munchies?location=pueblo,co&term=italian"
+
+    expect(response).to be_successful
+    
+    location_data = JSON.parse(response.body, symbolize_names: true)
+    location = location_data[:data]
+
+    expect(location).to_not have_key(:image_url)
+    expect(location).to_not have_key(:alias)
+    expect(location).to_not have_key(:is_closed)
+    expect(location).to_not have_key(:price)
+  end
 end
