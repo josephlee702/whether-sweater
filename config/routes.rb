@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       get "/forecast", to: "forecasts#show"
       post "/users", to: "users#create"
       post "/sessions", to: "users#log_in"
-      # post "/road_trip", to: ""
+      post "/road_trip", to: "forecasts#road_trip"
     end
   end
 end

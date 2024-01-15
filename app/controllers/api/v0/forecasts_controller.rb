@@ -6,4 +6,8 @@ class Api::V0::ForecastsController < ApplicationController
     forecast = WeatherFacade.get_forecast(lat,lon)
     render json: WeatherSerializer.format_forecast(forecast)
   end
+
+  def road_trip(location1, location2)
+    DirectionsFacade.get_route(location1, location2)
+  end
 end
