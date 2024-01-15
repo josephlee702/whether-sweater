@@ -1,5 +1,5 @@
 class DirectionsFacade
-  def self.get_route(location1, location2)
-    DirectionsService.get_url("?key=#{Rails.application.credentials.mapquest_api[:key]}&from=#{location1}&to=#{location2}")
+  def self.get_route(from, to, api_key)
+    DirectionsService.get_url("?key=#{api_key}&from=#{from}&to=#{to}")
   end
 end
