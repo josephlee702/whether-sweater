@@ -217,6 +217,7 @@
           1,
           null,
           null,
+          null,
           null
         ]
       },
@@ -585,7 +586,7 @@
           null
         ]
       },
-      "/Users/josephlee/3mod/projects/whether_sweater_final/app/controllers/api/v0/locations_controller.rb": {
+      "/Users/josephlee/3mod/projects/whether_sweater_final/app/controllers/api/v0/forecasts_controller.rb": {
         "lines": [
           1,
           1,
@@ -704,6 +705,6 @@
         ]
       }
     },
-    "timestamp": 1705290369
+    "timestamp": 1705290815
   }
 }

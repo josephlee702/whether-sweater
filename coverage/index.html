@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2024-01-14T20:46:09-07:00">2024-01-14T20:46:09-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2024-01-14T20:53:35-07:00">2024-01-14T20:53:35-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -71,7 +71,7 @@
       <tbody>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#a7bc23ca42e97463ba8ea82bef2cc82acc381ebc" class="src_link" title="app/controllers/api/v0/locations_controller.rb">app/controllers/api/v0/locations_controller.rb</a></td>
+            <td class="strong t-file__name"><a href="#6404a6c6481f4829ad5af74feb1d90419fadf232" class="src_link" title="app/controllers/api/v0/forecasts_controller.rb">app/controllers/api/v0/forecasts_controller.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
             <td class="cell--number">9</td>
             <td class="cell--number">7</td>
@@ -271,7 +271,7 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#09424575cde646567e38ee60caf93a42a68a30c8" class="src_link" title="config/routes.rb">config/routes.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">9</td>
+            <td class="cell--number">10</td>
             <td class="cell--number">6</td>
             <td class="cell--number">6</td>
             <td class="cell--number">0</td>
@@ -351,9 +351,9 @@
 
       <div class="source_files">
       
-        <div class="source_table" id="a7bc23ca42e97463ba8ea82bef2cc82acc381ebc">
+        <div class="source_table" id="6404a6c6481f4829ad5af74feb1d90419fadf232">
   <div class="header">
-    <h3>app/controllers/api/v0/locations_controller.rb</h3>
+    <h3>app/controllers/api/v0/forecasts_controller.rb</h3>
     <h4>
       <span class="green">
   100.0%
@@ -384,7 +384,7 @@
 
             
 
-            <code class="ruby">class Api::V0::LocationsController &lt; ApplicationController</code>
+            <code class="ruby">class Api::V0::ForecastsController &lt; ApplicationController</code>
           </li>
         </div>
       
@@ -4990,7 +4990,7 @@
 
             
 
-            <code class="ruby">      get &quot;/forecast&quot;, to: &quot;locations#show&quot;</code>
+            <code class="ruby">      get &quot;/forecast&quot;, to: &quot;forecasts#show&quot;</code>
           </li>
         </div>
       
@@ -5023,7 +5023,7 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">      # post &quot;/road_trip&quot;, to: &quot;&quot;</code>
           </li>
         </div>
       
@@ -5034,12 +5034,23 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
         <div>
           <li class="never" data-hits="" data-linenumber="9">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="10">
             
             
 

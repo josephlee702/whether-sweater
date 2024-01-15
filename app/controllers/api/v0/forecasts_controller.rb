@@ -1,4 +1,4 @@
-class Api::V0::LocationsController < ApplicationController
+class Api::V0::ForecastsController < ApplicationController
   def show
     data = MapquestFacade.get_lat_lon(params[:location])
     lat = data[:results].first[:locations].first[:latLng][:lat]
