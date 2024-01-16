@@ -1,6 +1,8 @@
 class MapquestService
   def self.conn
-    Faraday.new(url: 'https://www.mapquestapi.com/geocoding/v1/address')
+    Faraday.new(url: 'https://www.mapquestapi.com/geocoding/v1/address') do |faraday|
+      faraday.headers['key'] = Rails.application.credentials.mapquest_api[:key]
+    end
   end
   
   def self.get_url(url)
@@ -9,6 +11,6 @@ class MapquestService
   end
 
   def self.get_lat_lon(location)
-    get_url("?key=#{Rails.application.credentials.mapquest_api[:key]}&location=#{location}")
+    get_url("?location=#{location}")
   end
 end

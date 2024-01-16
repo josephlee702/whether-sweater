@@ -1,12 +1,13 @@
 require 'rails_helper'
 		
 describe "Forecast API" do
-  it "returns forecast JSON data" do
-    location = create(:location)
-    get "/api/v0/forecast?location=#{location.city},#{location.state}"
+  it "returns forecast JSON data" do    
+    get "/api/v0/forecast", params: {
+      q: "Denver,CO",
+    }
 
     expect(response).to be_successful
-
+require 'pry'; binding.pry
     forecast = JSON.parse(response.body, symbolize_names: true)
     forecast_data = forecast[:data]
 
