@@ -221,127 +221,13 @@
           null
         ]
       },
-      "/Users/josephlee/3mod/projects/whether_sweater_final/app/controllers/api/v0/forecasts_controller.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/josephlee/3mod/projects/whether_sweater_final/app/controllers/application_controller.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/Users/josephlee/3mod/projects/whether_sweater_final/app/facades/weather_facade.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          null,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          1,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          1,
-          null,
-          24,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/josephlee/3mod/projects/whether_sweater_final/app/facades/mapquest_facade.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null
-        ]
-      },
       "/Users/josephlee/3mod/projects/whether_sweater_final/app/services/mapquest_service.rb": {
         "lines": [
           1,
           1,
-          1,
+          2,
+          2,
           null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null
-        ]
-      },
-      "/Users/josephlee/3mod/projects/whether_sweater_final/app/services/weather_service.rb": {
-        "lines": [
-          1,
-          1,
-          1,
           null,
           null,
           1,
@@ -350,12 +236,12 @@
           null,
           null,
           1,
-          1,
+          0,
           null,
           null
         ]
       }
     },
-    "timestamp": 1705389937
+    "timestamp": 1705393549
   }
 }

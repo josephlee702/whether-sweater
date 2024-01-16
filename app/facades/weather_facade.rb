@@ -3,7 +3,7 @@ class WeatherFacade
     coordinates = MapquestFacade.get_lat_lon(location)
     response = WeatherService.get_forecast(coordinates.first, coordinates.second)
 
-   build_forecast_data(response)
+    build_forecast_data(response)
   end
 
   private 
