@@ -9,9 +9,9 @@ class DirectionsSerializer
           "end_city": "#{directions[:route][:locations].second[:adminArea5]}, #{directions[:route][:locations].first[:adminArea3]}",
           "travel_time": self.travel_time_from_seconds(directions[:route][:realTime]), 
           "weather_at_eta": {
-            "datetime": WeatherFacade.get_forecast,
-            "temperature": 44.2,
-            "condition": "Cloudy with a chance of meatballs"
+            "datetime": WeatherFacade.get_forecast(directions[:route][:legs].first[:maneuvers].last[:startPoint][:lat], directions[:route][:legs].first[:maneuvers].last[:startPoint][:lng])[:location][:localtime],
+            "temperature": WeatherFacade.get_forecast(directions[:route][:legs].first[:maneuvers].last[:startPoint][:lat], directions[:route][:legs].first[:maneuvers].last[:startPoint][:lng])[:current][:temp_f],
+            "condition": WeatherFacade.get_forecast(directions[:route][:legs].first[:maneuvers].last[:startPoint][:lat], directions[:route][:legs].first[:maneuvers].last[:startPoint][:lng])[:forecast][:forecastday].first[:day][:condition][:text]
           }
         }
       }
@@ -28,7 +28,7 @@ class DirectionsSerializer
     "%02d:%02d:%02d" % [hours, minutes, seconds]
   end
 
-  def datetime
-    WeatherFacade.get_forecast
-  end
+  # def lat_lon_eta(coordinates)
+  #   "#{coordinates[:lat]}, #{coordinates[:lng]}"
+  # end
 end
