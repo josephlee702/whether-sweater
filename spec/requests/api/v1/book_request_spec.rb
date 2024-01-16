@@ -1,11 +1,12 @@
 require 'rails_helper'
 		
-describe "Book API" do
+describe "Book API Happy Path" do
   it "returns books JSON data", :vcr do    
     get "/api/v1/book-search", params: {
       location: "Denver,CO",
       quantity: "2"
     }
+    
     expect(response).to be_successful
 
     books_data = JSON.parse(response.body, symbolize_names: true)
@@ -56,5 +57,18 @@ describe "Book API" do
     expect(books[:attributes][:books].first).to_not have_key(:edition_count)
     expect(books[:attributes][:books].first).to_not have_key(:publish_date)
     expect(books[:attributes][:books].first).to_not have_key(:last_modified_i)
+  end
+end
+
+describe "Book API Sad Path" do
+  it "returns an error json when quantity <= 0", :vcr do
+    get "/api/v1/book-search", params: {
+      location: "Denver,CO",
+      quantity: "-1"
+    }
+
+    error_message = JSON.parse(response.body, symbolize_names: true)
+    expect(error_message).to have_key(:error)
+    expect(error_message[:error]).to eq("Quantity must be greater than 0.")
   end
 end
