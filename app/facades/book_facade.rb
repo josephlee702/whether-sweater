@@ -3,14 +3,14 @@ class BookFacade
     forecast_data = WeatherFacade.get_forecast(location)
     forecast = forecast_data[:data][:attributes]
 
-    response = BookService.get_book(location, quantity)
+    books_response = BookService.get_book(location, quantity)
 
-    build_books_data(response, forecast, location)
+    build_books_data(books_response, forecast, location)
   end
 
 private
 
-  def self.build_books_data(response, forecast, location)
+  def self.build_books_data(books_response, forecast, location)
     {
       "data": {
         "id": nil,
@@ -21,8 +21,8 @@ private
             "summary": forecast[:current_weather][:condition],
             "temperature": "#{forecast[:current_weather][:temperature]} F",
           },
-          "total_books_found": response[:numFound],
-          "books": construct_all_books(response[:docs])
+          "total_books_found": books_response[:numFound],
+          "books": construct_all_books(books_response[:docs])
         }
       } 
     }
