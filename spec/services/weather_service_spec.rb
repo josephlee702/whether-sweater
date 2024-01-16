@@ -14,6 +14,12 @@ describe WeatherService do
     context '#get_url' do
       it 'returns a parsed response', :vcr do
         response = WeatherService.get_url('http://api.weatherapi.com/v1/forecast.json?q=Indianapolis&aqi=no&days=5')
+      end
+    end
+
+    context '#get_forecast' do
+      it 'returns proper json forecast data', :vcr do
+        response = WeatherService.get_forecast("47.73817", "11.02133")
 
         expect(response).to be_a(Hash)
         expect(response.count).to eq(3)
