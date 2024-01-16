@@ -7,4 +7,8 @@ class MapquestService
     response = conn.get(url)
     JSON.parse(response.body, symbolize_names: true)
   end
+
+  def self.get_lat_lon(location)
+    get_url("?key=#{Rails.application.credentials.mapquest_api[:key]}&location=#{location}")
+  end
 end

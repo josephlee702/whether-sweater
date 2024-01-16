@@ -1,5 +1,8 @@
 class MapquestFacade
   def self.get_lat_lon(location)
-    MapquestService.get_url("?key=#{Rails.application.credentials.mapquest_api[:key]}&location=#{location}")
+    data = MapquestService.get_lat_lon(location)
+    require 'pry'; binding.pry
+    coordinates = "#{data[:results].first[:locations].first[:latLng][:lat]}, ##{data[:results].first[:locations].first[:latLng][:lng]}"
+    split_coordinates = coordinates.split(",")
   end
 end
