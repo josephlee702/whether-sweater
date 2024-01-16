@@ -1,13 +1,13 @@
 require 'rails_helper'
 		
 describe "Forecast API" do
-  it "returns forecast JSON data" do    
+  it "returns forecast JSON data", :vcr do    
     get "/api/v0/forecast", params: {
       q: "Denver,CO",
     }
 
     expect(response).to be_successful
-require 'pry'; binding.pry
+
     forecast = JSON.parse(response.body, symbolize_names: true)
     forecast_data = forecast[:data]
 
@@ -18,15 +18,21 @@ require 'pry'; binding.pry
     expect(forecast_data).to have_key(:attributes)
     expect(forecast_data[:attributes]).to have_key(:current_weather)
     expect(forecast_data[:attributes][:current_weather]).to be_a(Hash)
+    expect(forecast_data[:attributes][:current_weather].count).to eq(8)
+
     expect(forecast_data[:attributes]).to have_key(:daily_weather)
     expect(forecast_data[:attributes][:daily_weather]).to be_an(Array)
+    expect(forecast_data[:attributes][:daily_weather].count).to eq(5)
+
     expect(forecast_data[:attributes]).to have_key(:hourly_weather)
     expect(forecast_data[:attributes][:hourly_weather]).to be_an(Array)
+    expect(forecast_data[:attributes][:hourly_weather].count).to eq(24)
   end
 
-  it "does not return irrelevant JSON data" do
-    location = create(:location)
-    get "/api/v0/forecast?location=#{location.city},#{location.state}"
+  it "does not return irrelevant JSON data", :vcr do
+    get "/api/v0/forecast", params: {
+      q: "Denver,CO",
+    }
 
     expect(response).to be_successful
 
