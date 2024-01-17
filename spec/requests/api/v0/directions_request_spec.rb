@@ -1,6 +1,6 @@
 require 'rails_helper'
 		
-describe "Directions Request API" do
+describe "Directions Request API Happy Path", :vcr do
   it "returns road trip directions JSON data" do
     post "/api/v0/road_trip", params: {
       "origin": "Cincinatti,OH",
@@ -38,7 +38,7 @@ describe "Directions Request API" do
     expect(directions[:attributes][:weather_at_eta][:condition]).to be_a(String)
   end
 
-  it "does not return irrelevant JSON data" do
+  it "does not return irrelevant JSON data", :vcr do
     post "/api/v0/road_trip", params: {
       "origin": "Cincinatti,OH",
       "destination": "Chicago,IL",
@@ -57,4 +57,47 @@ describe "Directions Request API" do
     expect(directions).to_not have_key(:hasHighway)
     expect(directions).to_not have_key(:hasTunnel)
   end
+
+  describe "Directions Request API Sad Paths" do
+    it "returns error message when no origin or destination is given", :vcr do
+      post "/api/v0/road_trip", params: {
+        "origin": "",
+        "destination": "Chicago,IL",
+        "api_key": "b3uDtIyIRfNO2T5ouMdEpjUTaDNirdke"
+      }
+      error_message = JSON.parse(response.body, symbolize_names: true)
+
+      expect(error_message).to have_key(:status)
+      expect(error_message[:status]).to eq(400)
+      expect(error_message).to have_key(:error_message)
+      expect(error_message[:error_message]).to eq("Please fill out all fields.")
+
+      post "/api/v0/road_trip", params: {
+        "origin": "Cincinatti,OH",
+        "destination": "",
+        "api_key": "b3uDtIyIRfNO2T5ouMdEpjUTaDNirdke"
+      }
+      error_message2 = JSON.parse(response.body, symbolize_names: true)
+
+      expect(error_message2).to have_key(:status)
+      expect(error_message2[:status]).to eq(400)
+      expect(error_message2).to have_key(:error_message)
+      expect(error_message2[:error_message]).to eq("Please fill out all fields.")
+    end
+
+    it "returns error message when no api_key is given", :vcr do
+      post "/api/v0/road_trip", params: {
+        "origin": "Cincinatti,OH",
+        "destination": "Chicago,IL",
+        "api_key": ""
+      }
+      error_message = JSON.parse(response.body, symbolize_names: true)
+
+      expect(error_message).to have_key(:status)
+      expect(error_message[:status]).to eq(401)
+      expect(error_message).to have_key(:error_message)
+      expect(error_message[:error_message]).to eq("Unauthorized")
+    end
+  end
+  
 end

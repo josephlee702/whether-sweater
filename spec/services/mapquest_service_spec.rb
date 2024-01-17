@@ -16,6 +16,14 @@ describe MapquestService do
         response = MapquestService.get_url('https://www.mapquestapi.com/geocoding/v1/address?key=b3uDtIyIRfNO2T5ouMdEpjUTaDNirdke&location=Denver,CO')
 
         expect(response).to be_a(Hash)
+      end
+    end
+
+    context '#get_lat_lon' do
+      it 'returns the desired json data', :vcr do
+        response = MapquestService.get_lat_lon("denver,co")
+
+        expect(response).to be_a(Hash)
         expect(response.count).to eq(3)
         expect(response).to have_key(:info)
         expect(response).to have_key(:options)
