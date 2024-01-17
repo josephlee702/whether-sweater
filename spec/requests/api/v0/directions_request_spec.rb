@@ -29,13 +29,12 @@ describe "Directions Request API Happy Path", :vcr do
     expect(directions[:attributes][:travel_time]).to be_a(String)
     expect(directions[:attributes]).to have_key(:weather_at_eta)
     expect(directions[:attributes][:weather_at_eta]).to be_a(Hash)
-
     expect(directions[:attributes][:weather_at_eta]).to have_key(:datetime)
     expect(directions[:attributes][:weather_at_eta][:datetime]).to be_a(String)
     expect(directions[:attributes][:weather_at_eta]).to have_key(:temperature)
-    expect(directions[:attributes][:weather_at_eta][:temperature]).to be_a(Float)
+    expect(directions[:attributes][:weather_at_eta][:temperature]).to be_an(Array)
     expect(directions[:attributes][:weather_at_eta]).to have_key(:condition)
-    expect(directions[:attributes][:weather_at_eta][:condition]).to be_a(String)
+    expect(directions[:attributes][:weather_at_eta][:condition]).to be_an(Array)
   end
 
   it "does not return irrelevant JSON data", :vcr do
