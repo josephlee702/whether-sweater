@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "Forecast API" do
   it "returns forecast JSON data", :vcr do    
     get "/api/v0/forecast", params: {
-      q: "Denver,CO",
+      location: "Denver,CO",
     }
 
     expect(response).to be_successful
@@ -31,7 +31,7 @@ describe "Forecast API" do
 
   it "does not return irrelevant JSON data", :vcr do
     get "/api/v0/forecast", params: {
-      q: "Denver,CO",
+      location: "Denver,CO",
     }
 
     expect(response).to be_successful

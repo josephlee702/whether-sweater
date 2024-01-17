@@ -79,7 +79,7 @@ describe "User Creation Sad Path Testing" do
   end
 end
 
-describe "Successful User Create request" do
+describe "Successful User Log In request" do
   it "logs in successfully" do
     post "/api/v0/users", params: {
       user: {
@@ -110,7 +110,7 @@ describe "Successful User Create request" do
   end
 end
 
-describe "Unsuccessful User Create request" do
+describe "Unsuccessful User Log In request" do
   it "tries to use invalid email" do
     post "/api/v0/sessions", params: {
         "email": "whatever@example.com",
@@ -125,7 +125,7 @@ describe "Unsuccessful User Create request" do
     expect(wrong_email[:error_message]).to eq("There is no account associated with this email.")
   end
 
-  it "tries to use invalid email" do
+  it "tries to use invalid password" do
     post "/api/v0/users", params: {
       user: {
         email: "whatever@example.com",
