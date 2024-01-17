@@ -5,19 +5,19 @@ class DirectionsFacade
     directions_data = DirectionsService.get_route(from, to, api_key)
     directions = directions_data[:route]
 
-    format_directions(forecast, directions)
+    format_directions(forecast, directions, from, to)
   end
 
   private
 
-  def self.format_directions(forecast, directions)
+  def self.format_directions(forecast, directions, from, to)
     {
       "data": {
         "id": nil,
         "type": "road_trip",
         "attributes": {
-          "start_city": "#{directions[:locations].first[:adminArea5]}, #{directions[:locations].first[:adminArea3]}",
-          "end_city": "#{directions[:locations].second[:adminArea5]}, #{directions[:locations].first[:adminArea3]}",
+          "start_city": from,
+          "end_city": to,
           "travel_time": self.travel_time_from_seconds(directions[:realTime]), 
           "weather_at_eta": {
             "datetime": datetime_at_eta(directions),

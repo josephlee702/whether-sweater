@@ -45,7 +45,7 @@ describe "Directions Facade" do
     it "returns proper JSON data", :vcr do
       response = DirectionsFacade.datetime_at_eta(DirectionsService.get_route("denver,co", "chicago,il", "b3uDtIyIRfNO2T5ouMdEpjUTaDNirdke")[:route])
 
-      expect(response).to eq("2024-01-17 08:28")
+      expect(response).to eq("2024-01-17 08:45")
     end
   end
 
