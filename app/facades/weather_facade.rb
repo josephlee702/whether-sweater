@@ -6,6 +6,10 @@ class WeatherFacade
     build_forecast_data(response)
   end
 
+  def self.get_lat_lon(location)
+    MapquestFacade.get_lat_lon(location)
+  end
+
   private 
 
   def self.build_forecast_data(response)

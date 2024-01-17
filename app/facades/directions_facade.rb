@@ -1,6 +1,7 @@
 class DirectionsFacade
   def self.get_route(from, to, api_key)
-    forecast = WeatherFacade.get_forecast(to)
+    coordinates = WeatherFacade.get_lat_lon(to)
+    forecast = WeatherService.get_forecast(coordinates.first, coordinates.second)
 
     directions_data = DirectionsService.get_route(from, to, api_key)
     directions = directions_data[:route]
@@ -67,15 +68,12 @@ class DirectionsFacade
     formatted_rounded_time = rounded_time.strftime("%Y-%m-%d %H:%M")
     only_date = DateTime.strptime(formatted_rounded_time, "%Y-%m-%d %H:%M")
     eta_date = only_date.strftime("%Y-%m-%d")
-  
-    forecast[:data][:attributes][:daily_weather].each do |day|
+    #eta_date is "2024-01-20"
+    forecast[:forecast][:forecastday].each do |day|
       if day[:date] == eta_date
-        forecast[:data][:attributes][:hourly_weather].each do |hour|
-          if hour[:time] == formatted_rounded_time
-            return hour[:temperature]
-          end
+        day[:hour].each do |hour|
+          return hour[:temp_f] if formatted_rounded_time == hour[:time]
         end
-      else
       end
     end
   end
@@ -83,14 +81,17 @@ class DirectionsFacade
   def self.condition_at_eta(forecast, directions)
     eta = datetime_at_eta(directions)
     eta_time = Time.parse(eta)
-
+  
     rounded_time = Time.at((eta_time.to_f / 3600).round * 3600)
     formatted_rounded_time = rounded_time.strftime("%Y-%m-%d %H:%M")
-
-    forecast[:data][:attributes][:hourly_weather].each do |hour|
-      if hour[:time] == formatted_rounded_time
-        return hour[:conditions]
-      else
+    only_date = DateTime.strptime(formatted_rounded_time, "%Y-%m-%d %H:%M")
+    eta_date = only_date.strftime("%Y-%m-%d")
+    #eta_date is "2024-01-20"
+    forecast[:forecast][:forecastday].each do |day|
+      if day[:date] == eta_date
+        day[:hour].each do |hour|
+          return hour[:condition][:text] if formatted_rounded_time == hour[:time]
+        end
       end
     end
   end
