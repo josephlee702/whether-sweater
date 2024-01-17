@@ -36,7 +36,7 @@ describe "Directions Facade" do
 
   describe "#travel_time_from_seconds", :vcr do
     it "returns proper JSON data", :vcr do
-      response = DirectionsFacade.travel_time_from_seconds(100)
+      response = DirectionsFacade.travel_time_from_seconds(DirectionsService.get_route("Denver,CO", "Fort Collins, CO", "b3uDtIyIRfNO2T5ouMdEpjUTaDNirdke")[:route], 100)
       expect(response).to eq("00:01:40")
     end
   end
