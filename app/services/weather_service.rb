@@ -1,4 +1,4 @@
-class WeatherService
+class SubscriptionService
   def self.conn
     Faraday.new(url: 'http://api.weatherapi.com/v1/forecast.json') do |faraday|
       faraday.headers['key'] = Rails.application.credentials.weather_api[:key]

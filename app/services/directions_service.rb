@@ -9,6 +9,6 @@ class DirectionsService
   end
 
   def self.get_route(from, to, api_key)
-    get_url("?key=#{api_key}&from=#{from}&to=#{to}")
+    get_url("?key=#{Rails.application.credentials.weather_api[:key]}&from=#{from}&to=#{to}")
   end
 end
